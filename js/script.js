@@ -368,6 +368,7 @@ function start() {
     $("#enemy1").remove();
     $("#enemy2").remove();
     $("#ally").remove();
+    $("#energy").remove();
 
     $("#background-game").append("<div id='gameOver'></div>");
     $("#gameOver").html(
@@ -377,4 +378,11 @@ function start() {
         "<div id='restart' onclick=restartGame()><h3> Play Again!</h3></div>"
     );
   }
+}
+
+function restartGame() {
+  let soundGameOver = document.getElementById("gameOverSound");
+  soundGameOver.pause();
+  $("#gameOver").remove();
+  start();
 }

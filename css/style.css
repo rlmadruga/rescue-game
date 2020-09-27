@@ -190,4 +190,18 @@ h3 {
   margin-top: 100px;
   text-align: center;
   padding: 10px;
+  border-radius: 20px;
+}
+
+#restart {
+  border: 2px solid #ccc;
+  background-color: #ccc;
+  border-radius: 20px;
+}
+
+#restart:hover,
+#restart:hover h3 {
+  color: #fff;
+  cursor: pointer;
+  background-color: #603a03;
 }
