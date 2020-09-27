@@ -193,7 +193,17 @@ function start() {
       newPositionAlly();
       $("#ally").remove();
     }
-  }
+
+    // ENEMY2 WITH ALLY
+    if (collisionEnAlly.length > 0) {
+      let allyX = parseInt($("#ally").css("left"));
+      let allyY = parseInt($("#ally").css("top"));
+      explosion3(allyX, allyY);
+
+      $("#ally").remove();
+      newPositionAlly();
+    }
+  } //COLLISION FUNCTION END
 
   function explosion1(enemyPX, enemyPY) {
     $("#background-game").append("<div id='explosion'></div>");
@@ -253,6 +263,21 @@ function start() {
       if (gameOver == false) {
         $("#background-game").append("<div id='ally' class='animation-ally'></div>");
       }
+    }
+  }
+
+  function explosion3(allyX, allyY) {
+    $("#background-game").append(
+      "<div id='explosion3' class='animation-ally-dead'></div>"
+    );
+    $("#explosion3").css("top", allyY);
+    $("#explosion3").css("left", allyX);
+
+    let explosionTime3 = window.setInterval(resetExplosion3, 1000);
+    function resetExplosion3() {
+      $("#explosion3").remove();
+      window.clearInterval(explosionTime3);
+      explosionTime3 = null;
     }
   }
 }
