@@ -22,6 +22,12 @@ h2 {
   color: #fff;
 }
 
+h3 {
+  font-family: Title;
+  font-size: 20px;
+  color: #603a03;
+}
+
 .container {
   width: 950px;
   height: auto;
@@ -173,4 +179,15 @@ h2 {
   position: absolute;
   left: 750px;
   top: 7px;
+}
+
+#gameOver {
+  width: 350px;
+  height: 200px;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  text-align: center;
+  padding: 10px;
 }

@@ -32,7 +32,7 @@ function start() {
 
   let soundShoot = document.getElementById("shootSound");
   let soundExplosion = document.getElementById("explosionSound");
-  let soundGameOver = document.getElementById("gameOverSOund");
+  let soundGameOver = document.getElementById("gameOverSound");
   let soundSaved = document.getElementById("savedSound");
   let soundLost = document.getElementById("lostSound");
   let soundBG = document.getElementById("bgGameSound");
@@ -350,6 +350,31 @@ function start() {
       $("#energy").css("background-image", "url('../resources/imgs/energia1.png')");
     } else if (energyStatus === 0) {
       $("#energy").css("background-image", "url('../resources/imgs/energia0.png')");
+
+      gameOverfc();
     }
+  }
+
+  //GAME OVER
+  function gameOverfc() {
+    gameOver = true;
+    soundBG.pause();
+    soundGameOver.play();
+
+    window.clearInterval(game.timer);
+    game.timer = null;
+
+    $("#player").remove();
+    $("#enemy1").remove();
+    $("#enemy2").remove();
+    $("#ally").remove();
+
+    $("#background-game").append("<div id='gameOver'></div>");
+    $("#gameOver").html(
+      "<h1> Game Over</h1><p>Your Score: " +
+        score +
+        "</p>" +
+        "<div id='restart' onclick=restartGame()><h3> Play Again!</h3></div>"
+    );
   }
 }
