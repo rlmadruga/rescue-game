@@ -3,17 +3,23 @@
   src: url(../resources/font/ANODETONOONE.TTF);
 }
 
+body {
+  background-image: url("/resources/imgs/fundo.jpg");
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  text-align: center;
+}
+
 h1 {
   font-family: Title;
   font-size: 40px;
   color: #603a03;
 }
 
-body {
-  background-image: url("/resources/imgs/fundo.jpg");
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 700;
-  text-align: center;
+h2 {
+  font-family: Title;
+  font-size: 20px;
+  color: #fff;
 }
 
 .container {
@@ -72,6 +78,7 @@ body {
   width: 350px;
   height: 200px;
   background-color: #fff;
+  border-radius: 10px;
   margin: 100px auto 0 auto;
   text-align: center;
   padding: 10px;
@@ -149,4 +156,13 @@ body {
   width: 44px;
   height: 51px;
   position: absolute;
+}
+
+#score {
+  width: 450px;
+  height: 50px;
+  position: absolute;
+  left: 0px;
+  top: 580px;
+  border: 2px solid #fff;
 }

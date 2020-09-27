@@ -5,6 +5,7 @@ function start() {
   $("#background-game").append("<div id='enemy1' class='animation-enemy'></div>");
   $("#background-game").append("<div id='enemy2' class='animation-enemy2'></div>");
   $("#background-game").append("<div id='ally' class='animation-ally'></div>");
+  $("#background-game").append("<div id='score'></div>");
 
   // GAME VARIABLES
   let game = {};
@@ -21,6 +22,10 @@ function start() {
   let enemyPositionY = parseInt(Math.random() * 334);
   let canShoot = true;
   let gameOver = false;
+
+  let score = 0;
+  let saved = 0;
+  let lost = 0;
 
   // KEY PRESSED
   $(document).keydown(function (e) {
@@ -42,6 +47,7 @@ function start() {
     moveEnemy_truck();
     moveAlly();
     gameCollision();
+    scoreUpdate();
   }
 
   //FUNCTIONS
@@ -165,6 +171,8 @@ function start() {
 
     // SHOOT WITH ENEMY1
     if (collisionWithShoot1.length > 0) {
+      score = score + 100;
+
       let enemy1PX = parseInt($("#enemy1").css("left"));
       let enemy1PY = parseInt($("#enemy1").css("top"));
 
@@ -178,6 +186,7 @@ function start() {
 
     //SHOOT WITH ENEMY2
     if (collisionWithShoot2.length > 0) {
+      score = score + 50;
       let enemy2PX = parseInt($("#enemy2").css("left"));
       let enemy2PY = parseInt($("#enemy2").css("top"));
       $("#enemy2").remove();
@@ -190,12 +199,14 @@ function start() {
 
     // PLAYER AND ALLY
     if (collisionWithAlly.length > 0) {
+      saved++;
       newPositionAlly();
       $("#ally").remove();
     }
 
     // ENEMY2 WITH ALLY
     if (collisionEnAlly.length > 0) {
+      lost++;
       let allyX = parseInt($("#ally").css("left"));
       let allyY = parseInt($("#ally").css("top"));
       explosion3(allyX, allyY);
@@ -205,6 +216,7 @@ function start() {
     }
   } //COLLISION FUNCTION END
 
+  // EXPLOSION 1
   function explosion1(enemyPX, enemyPY) {
     $("#background-game").append("<div id='explosion'></div>");
     $("#explosion").css("background-image", "url(/resources/imgs/explosao.png)");
@@ -223,6 +235,7 @@ function start() {
     }
   }
 
+  //NEW POSITION ENEMY 2
   function newPositionEnemy2() {
     let moveTime = window.setInterval(newPosition, 5000);
 
@@ -236,6 +249,7 @@ function start() {
     }
   }
 
+  //EXPLOSION 2
   function explosion2(enemy2PX, enemy2PY) {
     $("#background-game").append("<div id='explosion2'></div");
     $("#explosion2").css("background-image", "url(/resources/imgs/explosao.png)");
@@ -253,6 +267,7 @@ function start() {
     }
   }
 
+  // NEW POSITION ALLY
   function newPositionAlly() {
     let allyTime = window.setInterval(moveAlly, 6000);
 
@@ -266,6 +281,7 @@ function start() {
     }
   }
 
+  // EXPLOSION 3
   function explosion3(allyX, allyY) {
     $("#background-game").append(
       "<div id='explosion3' class='animation-ally-dead'></div>"
@@ -279,5 +295,12 @@ function start() {
       window.clearInterval(explosionTime3);
       explosionTime3 = null;
     }
+  }
+
+  // SCORE
+  function scoreUpdate() {
+    $("#score").html(
+      "<h2> Score: " + score + " | Saved: " + saved + " | Lost: " + lost + "</h2>"
+    );
   }
 }
