@@ -166,3 +166,11 @@ h2 {
   top: 580px;
   border: 2px solid #fff;
 }
+
+#energy {
+  width: 140px;
+  height: 30px;
+  position: absolute;
+  left: 750px;
+  top: 7px;
+}
